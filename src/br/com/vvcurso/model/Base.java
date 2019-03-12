@@ -11,7 +11,6 @@ public class Base {
 	}
 
 	public Base(Date dataHoraInclusao, Date dataHoraAlteracao, Integer codigoPedido) {
-		super();
 		this.dataHoraInclusao = dataHoraInclusao;
 		this.dataHoraAlteracao = dataHoraAlteracao;
 		this.codigoPedido = codigoPedido;
@@ -33,11 +32,11 @@ public class Base {
 		this.dataHoraAlteracao = dataHoraAlteracao;
 	}
 
-	public Integer getcodigoPedido() {
+	public Integer getCodigoPedido() {
 		return codigoPedido;
 	}
 
-	public void setcodigoPedido(Integer codigoPedido) {
+	public void setCodigoPedido(Integer codigoPedido) {
 		this.codigoPedido = codigoPedido;
 	}
 

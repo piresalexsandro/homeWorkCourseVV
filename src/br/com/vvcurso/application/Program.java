@@ -8,11 +8,9 @@ public class Program {
 
 	public static void main(String[] args) {
 
-		PedidoDataSource pds = new PedidoDataSource();
-		
 	   	Scanner sc = new Scanner(System.in);
-	    
-	   	System.out.print("Entre com a ação desejada: ");
+        System.out.println(); 
+		PedidoDataSource pds = new PedidoDataSource();
 		String acao = sc.next();
 		pds.acao(acao);
 	}

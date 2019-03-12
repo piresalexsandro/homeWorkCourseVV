@@ -1,7 +1,9 @@
 package br.com.vvcurso.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 public class Pedido extends Base {
 
@@ -12,8 +14,18 @@ public class Pedido extends Base {
 	public Pedido() {
 	}
 
-	public Pedido(final String nomeCliente, final Integer codigoFilial, final List<Item> itens) {
+	public Pedido(final String nomeCliente, final Integer codigoFilial) {
 		super();
+		this.nomeCliente = nomeCliente;
+		this.codigoFilial = codigoFilial;
+		//this.itens = itens;
+	}
+
+	
+	
+	public Pedido(Date dataHoraInclusao, Date dataHoraAlteracao, Integer codigoPedido, String nomeCliente,
+			Integer codigoFilial, List<Item> itens) {
+		super(null, null, codigoPedido);
 		this.nomeCliente = nomeCliente;
 		this.codigoFilial = codigoFilial;
 		this.itens = itens;
@@ -39,9 +51,13 @@ public class Pedido extends Base {
 		return itens;
 	}
 
-	public void setItens(final List<Item> itens) {
-		this.itens = itens;
-	}
+    public void addItemPedido(Item itemPedido) {
+        itens.add(itemPedido);
+    }
+    
+    public void removeItemPedido(Item itemPedido) {
+        itens.remove(itemPedido);
+    }
 
 	@Override
 	public String toString() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Item extends Pedido{
 	
+	private Integer codigoItem;
 	private BigDecimal valorItem;
 	private Integer qtdeItem;
 	private String nomeItem;
@@ -12,12 +13,20 @@ public class Item extends Pedido{
 	public Item() {
 	}
 
-	public Item(final String nomeCliente, final Integer codigoFilial, final List<Item> itens, final BigDecimal valorItem, final Integer qtdeItem,
-			String nomeItem) {
+	public Item(final Integer codigoItem, final BigDecimal valorItem, final Integer qtdeItem, String nomeItem) {
 		super();
+		this.codigoItem = codigoItem;
 		this.valorItem = valorItem;
 		this.qtdeItem = qtdeItem;
 		this.nomeItem = nomeItem;
+	}
+
+	public Integer getCodigoItem() {
+		return codigoItem;
+	}
+
+	public void setCodigoItem(final Integer codigoItem) {
+		this.codigoItem = codigoItem;
 	}
 
 	public BigDecimal getValorItem() {
@@ -46,13 +55,14 @@ public class Item extends Pedido{
 
 	@Override
 	public String toString() {
-		return "Item " + valorItem + ", " + qtdeItem + ", " + nomeItem;
+		return "Item " + codigoItem + valorItem + ", " + qtdeItem + ", " + nomeItem;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ((codigoItem == null) ? 0 : codigoItem.hashCode());
 		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
 		result = prime * result + ((qtdeItem == null) ? 0 : qtdeItem.hashCode());
 		result = prime * result + ((valorItem == null) ? 0 : valorItem.hashCode());

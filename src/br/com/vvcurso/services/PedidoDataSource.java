@@ -1,7 +1,10 @@
 package br.com.vvcurso.services;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -86,12 +89,19 @@ public class PedidoDataSource implements Acao{
 				
 				System.out.print("Descricao do Item: ");
 				String nomeItem = sc.next();
-				new Item(codigoItem, valorItem, qtdeItem, nomeItem);
+				//Lista de ItemPedido
+				List<Item> listItemPedido = new ArrayList<Item>();
+				//Instancia de ItemPedido
+				Item itemPedido = new Item(codigoItem, valorItem, qtdeItem, nomeItem);
+				//Adiciona ItemPedido na Lista
+				listItemPedido.add(itemPedido);
+				Date dataAtual = new Date();
+				pd[i] = new Pedido(dataAtual, null, codigoPedido, nomeCliente, codigoFilial, listItemPedido);
+				mapPedidos.put(pd[i].getCodigoPedido(), "pedido");
 				pd[i].addItemPedido(itemPedido);
 	        }
 	        
-			pd[i] = new Pedido(dataAtual, null, codigoPedido, nomeCliente, codigoFilial, ArrayList<itemPedido> list);
-			mapPedidos.put(pd[i].getCodigoPedido(), "pedido");
+			
         } 
     }
 	

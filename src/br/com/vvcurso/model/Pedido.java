@@ -61,7 +61,7 @@ public class Pedido extends Base {
 
 	@Override
 	public String toString() {
-		return " - Pedido " + nomeCliente + ", " + codigoFilial + ", " + itens;
+		return "\n Pedido: " + getDataHoraInclusao() + ", " + getDataHoraAlteracao() + ", " + getCodigoPedido() + ", " + nomeCliente + ", " + codigoFilial + ", " + itens;
 	}
 
 	@Override

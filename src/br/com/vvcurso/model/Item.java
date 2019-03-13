@@ -55,7 +55,7 @@ public class Item extends Pedido{
 
 	@Override
 	public String toString() {
-		return "Item " + codigoItem + valorItem + ", " + qtdeItem + ", " + nomeItem;
+		return "\n 		Item " + codigoItem + ", " + valorItem + ", " + qtdeItem + ", " + nomeItem;
 	}
 
 	@Override

@@ -22,7 +22,8 @@ public class PedidoDataSource implements Acao {
 			break;
 		case "I":
 			console.preencherDados();
-			incluir(p);
+			String retorno = incluir(p);
+			System.out.println(retorno);
 			break;
 		case "E":
 			excluir();
@@ -42,7 +43,6 @@ public class PedidoDataSource implements Acao {
 		}
 
 		return false;
-
 	}
 
 	@Override
@@ -53,18 +53,22 @@ public class PedidoDataSource implements Acao {
 
 	@Override
 	public Object consultar() {
+		System.out.print("Entre com o codigo do pedido a ser consultado: ");
+		int cdPedido = sc.nextInt();
+		p.setCodigoPedido(cdPedido); 
 		return mapPedidos.getOrDefault(p.getCodigoPedido(), null);
 	}
 
 	@Override
 	public void excluir() {
+		System.out.print("Entre com o codigo do pedido a ser excluido: ");
+		int cdPedido = sc.nextInt();
+		p.setCodigoPedido(cdPedido); 
 		mapPedidos.remove(p.getCodigoPedido());
 	}
 
 	@Override
 	public void alterar() {
-
-		System.out.println("ATUALIZAR");
 
 		if (mapPedidos.containsKey(p.getCodigoPedido())) {
 			mapPedidos.put(p.getCodigoPedido(), new Object());

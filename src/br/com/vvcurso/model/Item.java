@@ -53,6 +53,11 @@ public class Item extends Pedido{
 		this.nomeItem = nomeItem;
 	}
 
+    public BigDecimal valorTotalItem(final BigDecimal valorItem, Integer qtdeItem) {
+		BigDecimal resultado = valorItem.multiply(BigDecimal.valueOf(qtdeItem.longValue()));		
+		return resultado;
+	}
+	
 	@Override
 	public String toString() {
 		return "\n 		Item " + codigoItem + ", " + valorItem + ", " + qtdeItem + ", " + nomeItem;

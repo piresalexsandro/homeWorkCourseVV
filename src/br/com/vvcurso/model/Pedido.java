@@ -1,5 +1,6 @@
 package br.com.vvcurso.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -58,6 +59,10 @@ public class Pedido extends Base {
     public void removeItemPedido(Item itemPedido) {
         itens.remove(itemPedido);
     }
+
+	public BigDecimal valorPedido(final BigDecimal valorTotalItem) {
+		return valorTotalItem;
+	}
 
 	@Override
 	public String toString() {

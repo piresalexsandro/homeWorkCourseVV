@@ -11,7 +11,6 @@ public class PedidoDataSource implements Acao {
 
 	Scanner sc = new Scanner(System.in);
 	Pedido p = new Pedido();
-	Console console = new Console();
 	Map<Integer, Object> mapPedidos = new HashMap<>();
 	String desejaSair;
 
@@ -19,21 +18,23 @@ public class PedidoDataSource implements Acao {
 		switch (opcao.toUpperCase()) {
 		case "C":
 			consultar();
+			System.out.println(p);
 			break;
 		case "I":
-			console.preencherDados();
-			String retorno = incluir(p);
+			Console console = new Console();
+			String retorno = incluir(console.preencherDados());
 			System.out.println(retorno);
 			break;
 		case "E":
 			excluir();
+			System.out.println(p);
 			break;
 		case "A":
 			alterar();
 			break;
 		case "S":
 			sair();
-			if (desejaSair == "S") {
+			if (desejaSair.toUpperCase().equals("S")) {
 				return true;
 			}
 			break;
@@ -48,6 +49,7 @@ public class PedidoDataSource implements Acao {
 	@Override
 	public String incluir(Pedido pedido) {
 		mapPedidos.put(pedido.getCodigoPedido(), pedido);
+		System.out.println("mapPedidos " + mapPedidos);
 		return "Pedido incluido com sucesso";
 	}
 
@@ -58,7 +60,7 @@ public class PedidoDataSource implements Acao {
 		p.setCodigoPedido(cdPedido); 
 		return mapPedidos.getOrDefault(p.getCodigoPedido(), null);
 	}
-
+	
 	@Override
 	public void excluir() {
 		System.out.print("Entre com o codigo do pedido a ser excluido: ");
@@ -76,8 +78,6 @@ public class PedidoDataSource implements Acao {
 			System.out.println("Pedido não encontrado! Deseja incluir?");
 			this.incluir(p);
 		}
-
-		// tratar data da alteração
 	}
 
 	@Override

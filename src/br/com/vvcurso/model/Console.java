@@ -58,6 +58,8 @@ public class Console {
 			
 			p = pedido;
 		}
+	//System.out.println(p);
+	System.out.println();
 	return p;	
 	}
 	

@@ -22,11 +22,9 @@ public class Pedido extends Base {
 		//this.itens = itens;
 	}
 
-	
-	
 	public Pedido(Date dataHoraInclusao, Date dataHoraAlteracao, Integer codigoPedido, String nomeCliente,
 			Integer codigoFilial, List<Item> itens) {
-		super(null, null, codigoPedido);
+		super(dataHoraInclusao, null, codigoPedido);
 		this.nomeCliente = nomeCliente;
 		this.codigoFilial = codigoFilial;
 		this.itens = itens;

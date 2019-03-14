@@ -15,7 +15,7 @@ public class Program {
 		PedidoDataSource pds = new PedidoDataSource();
 		
 		while (!exit) {
-			System.out.println("A - Alterar \nC - Consultar \nI -Inseir \nE - Excluir \nS - Sair");
+			System.out.println("A - Alterar \nC - Consultar \nI - Inseir \nE - Excluir \nS - Sair");
 			System.out.println();
 			System.out.print("Digite a ação desejada: ");
 			String acao = sc.next();

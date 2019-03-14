@@ -11,28 +11,32 @@ public class PedidoDataSource implements Acao {
 
 	Scanner sc = new Scanner(System.in);
 	Pedido p = new Pedido();
+	Console console = new Console();
 	Map<Integer, Object> mapPedidos = new HashMap<>();
 	String desejaSair;
-
+	int cdPedido;
+	
 	public boolean acao(final String opcao) {
 		switch (opcao.toUpperCase()) {
 		case "C":
 			System.out.print("Entre com o codigo do pedido a ser consultado: ");
-			p = consultar();
+			cdPedido = sc.nextInt();
+			p = consultar(cdPedido);
 			System.out.println(p);
 			break;
 		case "I":
-			Console console = new Console();
 			String retorno = incluir(p = console.preencherDados());
 			System.out.println(retorno);
 			break;
 		case "E":
-			excluir();
-			//System.out.println(mapPedidos);
+			System.out.print("Entre com o codigo do pedido a ser excluido: ");
+			cdPedido = sc.nextInt();
+			excluir(cdPedido);
 			break;
 		case "A":
-			alterar();
-			//System.out.println(mapPedidos);
+			System.out.print("Entre com o codigo do pedido a ser alterado: ");
+			cdPedido = sc.nextInt();
+			alterar(cdPedido);
 			break;
 		case "S":
 			sair();
@@ -56,43 +60,43 @@ public class PedidoDataSource implements Acao {
 	}
 
 	@Override
-	public Pedido consultar() {
-		int cdPedido = sc.nextInt();
-		//p.setCodigoPedido(cdPedido); 
+	public Pedido consultar(final int cdPedidoConsultar) {
 		System.out.println();
-		//Pedido retornoConsulta = new HashMap<>();
 		Pedido retornoConsulta = new Pedido();
-		retornoConsulta = (Pedido) mapPedidos.getOrDefault(cdPedido, null);
+		retornoConsulta.setCodigoPedido(cdPedidoConsultar); 
+		retornoConsulta = (Pedido) mapPedidos.getOrDefault(retornoConsulta.getCodigoPedido(), null);
 		return retornoConsulta;
 	}
 	
 	@Override
-	public void excluir() {
-		System.out.print("Entre com o codigo do pedido a ser excluido: ");
-		int cdPedido = sc.nextInt();
-		p.setCodigoPedido(cdPedido); 
+	public void excluir(int cdPedidoExcluir) {
+		Pedido pedidoExcluir = new Pedido();
+		pedidoExcluir.setCodigoPedido(cdPedidoExcluir); 
+		
+		if (mapPedidos.containsKey(cdPedido)) {
+			pedidoExcluir = consultar(cdPedido);
+			console.retornarPedido(pedidoExcluir);
+			mapPedidos.put(pedidoExcluir.getCodigoPedido(), new Object());
+		} else {
+			System.out.println("Pedido não encontrado! Deseja incluir?");
+			this.incluir(pedidoExcluir);
+		}
 		mapPedidos.remove(p.getCodigoPedido());
 		System.out.println("Pedido: "+ cdPedido + ", excluido com sucesso");
-		System.out.println();
 	}
 
 	@Override
-	public void alterar() {
+	public void alterar(int cdPedidoAlterar) {
 
-		System.out.println();
-		System.out.print("Entre com o codigo do pedido a ser alterado: ");
-		int cdPedido = sc.nextInt();
-		//p = (Pedido) mapPedidos.get(cdPedido);
-		p.setCodigoPedido(cdPedido);
-		p = consultar();
-		
-		
-		
-		if (mapPedidos.containsKey(p.getCodigoPedido())) {
-			mapPedidos.put(p.getCodigoPedido(), new Object());
+		Pedido retornoPedidoAlterar = new Pedido();
+
+		if (mapPedidos.containsKey(cdPedidoAlterar)) {
+			retornoPedidoAlterar = consultar(cdPedidoAlterar);
+			console.retornarPedido(retornoPedidoAlterar);
+			mapPedidos.put(retornoPedidoAlterar.getCodigoPedido(), new Object());
 		} else {
 			System.out.println("Pedido não encontrado! Deseja incluir?");
-			this.incluir(p);
+			this.incluir(retornoPedidoAlterar);
 		}
 		
 	}

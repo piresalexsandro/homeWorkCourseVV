@@ -17,8 +17,9 @@ public class PedidoDataSource implements Acao {
 	public boolean acao(final String opcao) {
 		switch (opcao.toUpperCase()) {
 		case "C":
-			consultar();
-			//System.out.println(p);
+			System.out.print("Entre com o codigo do pedido a ser consultado: ");
+			p = consultar();
+			System.out.println(p);
 			break;
 		case "I":
 			Console console = new Console();
@@ -55,16 +56,14 @@ public class PedidoDataSource implements Acao {
 	}
 
 	@Override
-	public Object consultar() {
-		System.out.print("Entre com o codigo do pedido a ser consultado: ");
+	public Pedido consultar() {
 		int cdPedido = sc.nextInt();
-		p.setCodigoPedido(cdPedido); 
+		//p.setCodigoPedido(cdPedido); 
 		System.out.println();
-		return mapPedidos.getOrDefault(p.getCodigoPedido(), null);
-		//p = (Pedido) mapPedidos.get(p.getCodigoPedido());
-		//p = (Pedido) mapPedidos.get(cdPedido);
-		//return p;
-		//return mapPedidos.containsKey(cdPedido);
+		//Pedido retornoConsulta = new HashMap<>();
+		Pedido retornoConsulta = new Pedido();
+		retornoConsulta = (Pedido) mapPedidos.getOrDefault(cdPedido, null);
+		return retornoConsulta;
 	}
 	
 	@Override
@@ -85,6 +84,7 @@ public class PedidoDataSource implements Acao {
 		int cdPedido = sc.nextInt();
 		//p = (Pedido) mapPedidos.get(cdPedido);
 		p.setCodigoPedido(cdPedido);
+		p = consultar();
 		
 		
 		

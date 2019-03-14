@@ -22,5 +22,4 @@ public class Program {
 			exit = pds.acao(acao);
 		}
 	}
-
 }

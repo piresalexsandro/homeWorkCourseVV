@@ -1,12 +1,12 @@
 package br.com.vvcurso.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Console {
 	
@@ -21,6 +21,8 @@ public class Console {
 	private BigDecimal valorItem;
 	private Integer qtdeItem;
 	private String nomeItem;
+	public BigDecimal valorTotalPedido;
+	public BigDecimal valorTotalItem;
 	
 	public Item getItemPedido() {
 		return itemPedido;
@@ -97,6 +99,7 @@ public class Console {
 		System.out.println("Codigo do Pedido: " + pedido.getCodigoPedido());
 		System.out.println("Nome do Cliente.: " + pedido.getNomeCliente());
 		System.out.println("Codigo da Filial: " + pedido.getCodigoFilial());
+		System.out.println("Valor do Pedido.: " + valorTotalPedido);
 		System.out.println("*-------------- I T E N S --------------*");
 		for (Item itemPedido : pedido.getItens()) {
 			System.out.println("	Codigo do Item....: " + itemPedido.getCodigoItem());
@@ -124,7 +127,7 @@ public class Console {
 		Integer qtdeI = sc.nextInt();
 
 		// Lista de ItemPedido
-		List<Item> listItemPedido = new ArrayList<Item>();
+		Set<Item> listItemPedido = new HashSet<Item>();
 		for (int i = 0; i < qtdeI; i++) {
 			System.out.print("	Codigo do Item....: ");
 			Integer codigoItem = sc.nextInt();
@@ -147,14 +150,14 @@ public class Console {
 			Pedido pedido = new Pedido(dataAtual, null, codigoPedido, nomeCliente, codigoFilial, listItemPedido);
 
 			//obtendo o valor total do item e o valor do pedido
-			itemPedido.valorTotalItem(valorItem, qtdeItem);
-			pedido.valorPedido(itemPedido.getValorItem());
-			
+			valorTotalItem = itemPedido.getValorTotalItem();
+			valorTotalPedido = pedido.getValorTotal();
 			p = pedido;
 		}
-	//System.out.println(p);
-	System.out.println();
-	return p;	
+		
+		System.out.print("Valor do Pedido.: " + valorTotalPedido);
+		System.out.println();
+		return p;	
 	}
 	
 	public Date getPegaDataAtual() {

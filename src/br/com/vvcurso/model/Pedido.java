@@ -3,14 +3,17 @@ package br.com.vvcurso.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Pedido extends Base {
 
 	private String nomeCliente;
 	private Integer codigoFilial;
-	private List<Item> itens = new ArrayList<>();
+	BigDecimal valorTotalPedido = BigDecimal.ZERO;
+	private Set<Item> itens = new HashSet<>();
 	
 	public Pedido() {
 	}
@@ -23,7 +26,7 @@ public class Pedido extends Base {
 	}
 
 	public Pedido(Date dataHoraInclusao, Date dataHoraAlteracao, Integer codigoPedido, String nomeCliente,
-			Integer codigoFilial, List<Item> itens) {
+			Integer codigoFilial, Set<Item> itens) {
 		super(dataHoraInclusao, dataHoraAlteracao, codigoPedido);
 		this.nomeCliente = nomeCliente;
 		this.codigoFilial = codigoFilial;
@@ -46,7 +49,7 @@ public class Pedido extends Base {
 		this.codigoFilial = codigoFilial;
 	}
 
-	public List<Item> getItens() {
+	public Set<Item> getItens() {
 		return itens;
 	}
 
@@ -59,7 +62,19 @@ public class Pedido extends Base {
     }
 
 	public BigDecimal valorPedido(final BigDecimal valorTotalItem) {
-		return valorTotalItem;
+		valorTotalPedido = valorTotalPedido.add(valorTotalItem);
+		if(valorTotalPedido == BigDecimal.ZERO) {
+			return valorTotalPedido;
+		} 
+		return valorTotalPedido;
+	}
+	
+	public BigDecimal getValorTotal() {
+		BigDecimal soma = BigDecimal.ZERO;
+		for (Item ip : itens) {
+			soma = soma.add(ip.getValorTotalItem());
+		}
+		return soma;
 	}
 
 	@Override

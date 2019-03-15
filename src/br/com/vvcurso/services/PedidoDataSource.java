@@ -55,7 +55,7 @@ public class PedidoDataSource implements Acao {
 	@Override
 	public String incluir(Pedido pedido) {
 		mapPedidos.put(pedido.getCodigoPedido(), pedido);
-		System.out.println("mapPedidos " + mapPedidos);
+		//System.out.println("mapPedidos " + mapPedidos);
 		return "Pedido incluido com sucesso";
 	}
 

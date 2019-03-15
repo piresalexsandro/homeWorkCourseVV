@@ -53,7 +53,7 @@ public class Item extends Pedido{
 		this.nomeItem = nomeItem;
 	}
 
-    public BigDecimal valorTotalItem(final BigDecimal valorItem, Integer qtdeItem) {
+    public BigDecimal getValorTotalItem() {
 		BigDecimal resultado = valorItem.multiply(BigDecimal.valueOf(qtdeItem.longValue()));		
 		return resultado;
 	}

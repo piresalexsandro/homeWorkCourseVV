@@ -91,7 +91,7 @@ public class Console {
 	
 	public Pedido retornarPedido(Pedido pedido) {
 
-		System.out.println("Altere os dados necessarios");
+		//System.out.println("Altere os dados necessarios");
 		System.out.println("Data Inclusao...: " + pedido.getDataHoraInclusao());
 		Date dataAlteracao = getPegaDataAtual();
 		pedido.setDataHoraAlteracao(dataAlteracao);
@@ -99,8 +99,7 @@ public class Console {
 		System.out.println("Codigo do Pedido: " + pedido.getCodigoPedido());
 		System.out.println("Nome do Cliente.: " + pedido.getNomeCliente());
 		System.out.println("Codigo da Filial: " + pedido.getCodigoFilial());
-		System.out.println("Valor do Pedido.: " + valorTotalPedido);
-		System.out.println("*-------------- I T E N S --------------*");
+		//System.out.println("Valor do Pedido.: " + valorTotalPedido);
 		for (Item itemPedido : pedido.getItens()) {
 			System.out.println("	Codigo do Item....: " + itemPedido.getCodigoItem());
 			System.out.println("	Valor do Item.....: " + itemPedido.getValorItem());

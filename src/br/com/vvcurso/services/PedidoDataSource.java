@@ -21,8 +21,7 @@ public class PedidoDataSource implements Acao {
 		case "C":
 			System.out.print("Entre com o codigo do pedido a ser consultado: ");
 			cdPedido = sc.nextInt();
-			p = consultar(cdPedido);
-			System.out.println(p);
+			consultar(cdPedido);
 			break;
 		case "I":
 			String retorno = incluir(p = console.preencherDados());
@@ -64,8 +63,21 @@ public class PedidoDataSource implements Acao {
 		System.out.println();
 		Pedido retornoConsulta = new Pedido();
 		retornoConsulta.setCodigoPedido(cdPedidoConsultar); 
-		retornoConsulta = (Pedido) mapPedidos.getOrDefault(retornoConsulta.getCodigoPedido(), null);
-		return retornoConsulta;
+		
+		if (mapPedidos.containsKey(cdPedidoConsultar)) {
+			retornoConsulta = (Pedido) mapPedidos.getOrDefault(retornoConsulta.getCodigoPedido(), null);
+			retornoConsulta.setDataHoraAlteracao(null);
+			console.retornarPedido(retornoConsulta);
+		} else {
+			System.out.println("Pedido não encontrado!");
+			/*String x = " ";
+			x = sc.next();
+			if (x == "S") {
+			   this.incluir(retornoConsulta);
+			}*/
+		}
+		
+		return retornoConsulta; 
 	}
 	
 	@Override
@@ -73,16 +85,15 @@ public class PedidoDataSource implements Acao {
 		Pedido pedidoExcluir = new Pedido();
 		pedidoExcluir.setCodigoPedido(cdPedidoExcluir); 
 		
-		if (mapPedidos.containsKey(cdPedido)) {
-			pedidoExcluir = consultar(cdPedido);
-			console.retornarPedido(pedidoExcluir);
-			mapPedidos.put(pedidoExcluir.getCodigoPedido(), new Object());
-		} else {
-			System.out.println("Pedido não encontrado! Deseja incluir?");
-			this.incluir(pedidoExcluir);
+		if (mapPedidos.containsKey(cdPedidoExcluir)) {
+			//pedidoExcluir = consultar(cdPedido);
+			//console.retornarPedido(pedidoExcluir);
+			//mapPedidos.put(pedidoExcluir.getCodigoPedido(), new Object());
+			mapPedidos.remove(pedidoExcluir.getCodigoPedido());
+			System.out.println("Pedido: "+ cdPedido + ", excluido com sucesso");
+		}else {
+			System.out.println("Pedido não encontrado!");
 		}
-		mapPedidos.remove(p.getCodigoPedido());
-		System.out.println("Pedido: "+ cdPedido + ", excluido com sucesso");
 	}
 
 	@Override
